@@ -10,7 +10,9 @@ package main
 
 import "fmt"
 
-// addTen 接收一个整数指针，将其值加 10
+// addTen 接收一个整数指针，将其值加 10。
+// 参数：n —— 指向需要被修改的整数的指针；当 n 为 nil 时不进行任何修改。
+// 副作用：函数返回后，*n 的值会被原地增加 10。
 func addTen(n *int) {
 	if n == nil {
 		return
@@ -18,7 +20,9 @@ func addTen(n *int) {
 	*n += 10
 }
 
-// doubleSlice 接收一个整数切片的指针，将切片中每个元素乘以 2
+// doubleSlice 接收一个整数切片的指针，将切片中每个元素乘以 2。
+// 参数：nums —— 指向需要被修改的切片；当 nums 为 nil 时不进行任何修改。
+// 副作用：函数返回后，切片中的每个元素都会被原地乘以 2。
 func doubleSlice(nums *[]int) {
 	if nums == nil {
 		return
@@ -29,13 +33,16 @@ func doubleSlice(nums *[]int) {
 	}
 }
 
+// main 展示上述两个函数的用法：
+// 1）通过指针参数修改基础类型的值；
+// 2）通过切片指针原地修改切片中每个元素。
 func main() {
-	// 示例 1：指针参数修改数值
+	// 示例 1：指针参数修改数值（期望输出 15）
 	value := 5
 	addTen(&value)
 	fmt.Printf("加10后：%d\n", value)
 
-	// 示例 2：切片指针修改切片内容
+	// 示例 2：切片指针修改切片内容（期望输出 [2 4 6 8]）
 	arr := []int{1, 2, 3, 4}
 	doubleSlice(&arr)
 	fmt.Printf("切片乘2后：%v\n", arr)
